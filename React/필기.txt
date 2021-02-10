@@ -1,0 +1,110 @@
+React필기 
+0. 실행 npm run dev
+
+1. SSR 방식 (브라우저 - 프론트서버 - 백엔드서버 - 데이터베이스)
+장점 - 
+단점 - 로딩속도 길다
+
+2. react는 하나의 페이지고 그안의 컴포넌트만 바꿔치기해서 눈속임 < 이게 SPA방식(CSR)
+장점 - 로딩창부터 보여줘서 사용자이용시간늘림
+단점 - 로딩창밖에 없는걸로 판단해 저성능 검색엔진에 잘 안걸릴수도있음
+
+###
+
+3. 서버사이드 렌더링 - 검색엔진을 위함
+	- 첫 방문만 SSR방식, 그 이후는 SPA방식
+	- react랑 서버 둘다 있어야함
+3-1. 프리 렌더링 - 검색엔진인걸 알아봄?
+
+4. admin페이지에선 Next(x) , React(o)
+
+PS. next 9버전, ant design도 4버전
+
+5. 동적라우팅기능
+6. 컴포넌트? / 클래스?훅스?
+7. react - children < node라는 타입(React의)
+화면안에 있는 모든것들이 node임
+7-1. 렌더링?
+7-2.
+8. proptypes?
+9. web팩이 알아서 css를 처리해줌
+
+10. 적응형 웹 - 모바일,타블렛 따로
+반응형 - 모바일 > 타블렛 이런식 (모바일 디자인먼저필수)
+
+PS 디자인순서원칙
+1. 가로 디자인 > 세로디자인
+2. 모바일 > 그외 나머지 디자인
+
+11. 거터
+
+12. 동적프로그래밍이 뭔지 확실하게 알아야겠음..,객체?
+13. 리액트 폼 라이브러리라고 있음
+14. UsecallBack?? 이게 최적화를 해준다는데? 프롭스로 넘겨주는? 무슨뜻?
+15. a.target?
+16. 객체 리렌더링 - 최적화
+16-1. 컴포넌트를 커스텀하게 CSS적용
+import styled from 'styled-components';
+> 
+const SearchInput = styled(Input.Search)`
+    vertical-align:middle;
+`;
+
+>                <Menu.Item>
+                    <SearchInput enterButton/>
+                </Menu.Item>
+17. Usecallback함수를 캐싱 / Usememo값을캐싱
+CSS Usememo를 쓰는법
+> import React, { useState, useCallback, useMemo } from 'react';
+>     const style = useMemo(() => ({marginTop:10}),[]);
+> 
+            <ButtonWrapper style={style}></ButtonWrapper>
+17-1. 객체 캐싱?
+18. 버츄얼 돔?
+18-1. 프리벤트디폴트?
+
+19. 리액트&뷰와 제이쿼리는 호환성이안좋음
+
+20. props?
+21. validation
+
+
+///리덕스
+PS 규모있는서비스인 경우 데이터 중앙저장소가 있어야함
+1. 초보 리덕스
+2. 생산성 생각하면 모벡스 - 에러추적이 어려움
+3. 소규모앱이면 컨텍스트 API
+
+서버에서 데이터를 받아오는것은 비동기<?
+요청 성공 실패
+
+///// 리덕스 원리 
+
+중앙서버 - 액션(수정함수) - 디스패치(?) - 리듀서(수정함수보관소) 
+> 이렇게하는이유: 데이터가 다 기록이됨
+
+자바스크립트의 주의점
+{} === {} //false
+const a={};
+const b = a; 참조관계가 있으면
+a ===b // true
+
+// 위를 참조하면 객체간의 관계가 prev와  next로 나뉠수있음
+ex)
+const prev = {name:'a'}
+const next = {name:'b'} < 이렇게 해야함
+
+만약 const next = prev;
+next.name = 'b'; 일케되면
+prev.name;의 결과가 'b'로 나와버리는것임
+
+그리고 참조관계로 남겨야하는것들은
+...state,로 해서 메모리를 아껴야함
+
+22. const a = {
+    a:'b',
+    c:'d', <왜 여기서도 ,를 찍는지?
+}
+
+23.// store, 저장기능 - state와 reduce를 포함하는것이 store
+
